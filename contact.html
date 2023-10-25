@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Contacto</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav class="stroke">
+      <ul>
+        <li><a href="./index.html">Inicio</a></li>
+        <li><a href="./register_donator.html">Registro de Donadores</a></li>
+        <li><a href="/list_donator.html">Listado de Donadores</a></li>
+        <li><a href="./contact.html">Contáctanos</a></li>
+      </ul>
+    </nav>
+  </header>       
+    <h1>Contáctanos</h1>
+    <form class="form" id="contactForm">
+      <label id="errorEmail"></label>
+      <br>
+      <table>
+        <tr>
+          <td>Nombre</td>
+          <td><input type="text" id="nameContact" placeholder="Ingrese su nombre completo" required></td>
+        </tr>
+        <tr>
+          <td>Correo electrónico</td>
+          <td><input type="email" id="emailContact" placeholder="Ingrese su correo electrónico" required></td>
+        </tr>
+        <tr>
+          <td>Mensaje</td>
+          <td><textarea id="message" rows=5 cols=50 placeholder="Ingrese su mensaje"></textarea></td>
+        </tr>
+        <tr>
+          <td></td>
+          <tr> <td></td><td><button type="button" id="contactButton">Enviar</button></td></tr>
+        </tr>
+      </table>      
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
