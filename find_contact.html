@@ -16,28 +16,23 @@
         <li><a href="./contact.html">Contáctanos</a></li>
       </ul>
     </nav>
-  </header>       
-    <h1>Contáctanos</h1>
-    <form class="form" id="contactForm">
-      <label id="errorEmail"></label>
-      <br>
-      <table>
+  </header>    
+    <h1>Listado de Contactos</h1>
+    <form class="form">
+    
+      <table id="contactList" class="contactTable">
+        <tbody>
         <tr>
-          <td>Nombre</td>
-          <td><input type="text" id="nameContact" placeholder="Ingrese su nombre completo" required></td>
+            <th class="contactTd" colspan="3" style="padding-top: 10px"><input style="width : 90%;" placeholder="Ingrese datos a buscar" type="text" id="findContact"/></th>
+            <th class="contactTd" colspan="1"><button type="button" id="findButton">Buscar</button></th>
         </tr>
-        <tr>
-          <td>Correo electrónico</td>
-          <td><input type="email" id="emailContact" placeholder="Ingrese su correo electrónico" required></td>
-        </tr>
-        <tr>
-          <td>Mensaje</td>
-          <td><textarea id="message" rows=5 cols=50 placeholder="Ingrese su mensaje"></textarea></td>
-        </tr>
-        <tr>
-          <td></td>
-          <tr> <td></td><td><button type="button" id="contactButton">Enviar</button></td></tr>
-        </tr>
+          <tr>
+            <th class="contactTr">#</th>
+            <th class="contactTr">Nombre</th>
+            <th class="contactTr">Correo</th>
+            <th class="contactTr">Mensaje</th>
+          </tr>
+        </tbody>
       </table>      
     </form>
     <footer>

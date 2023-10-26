@@ -83,6 +83,20 @@ $("#registerButton").click(donate);
 // Guardar Contacto en Storage
 $("#contactButton").click(contact);
 
+// Buscar Contactos en el archivo tipo json list_contact
+$("#findButton").click(function () {
+  if ($('#findContact').val().length > 0) {
+    findContact();
+  }
+});
+
+// Buscar Donadores
+$("#findButtonDonator").click(function () {
+  if ($('#findDonator').val().length > 0) {
+    findDonator();
+  }
+});
+
 // Borrar Donaciones del Storage
 $("#clearButton").click(function () {
   localStorage.removeItem('donations');
@@ -122,6 +136,7 @@ function validate(amount, email, phone) {
 function loadDonationsFromStorage() {
 
   const donationsJSON = localStorage.getItem('donations');
+  let   number        = 0;
 
   if (donationsJSON) {
 
@@ -132,16 +147,13 @@ function loadDonationsFromStorage() {
 
       donations.forEach(donation => {
         const donationRow = document.createElement('tr');
-        
-    
         donationRow.innerHTML = `
+        <td class="contactTd">${number++}</td>
           <td class="contactTd">${donation.name}</td>
           <td class="contactTd">${donation.email}</td>
           <td class="contactTd">${donation.phone}</td>
           <td class="contactTd">$ ${donation.amount}</td>
         `;
-
-      
         $("#donationList").append(donationRow);
        
       });
@@ -150,6 +162,7 @@ function loadDonationsFromStorage() {
       const totalDonation = donations.reduce((total, donation) => total + donation.amount, 0);
 
       totalItem.innerHTML = `
+      <td></td>
       <td></td>
       <td></td>
       <td class="contactTd">Total:</td>
@@ -161,9 +174,94 @@ function loadDonationsFromStorage() {
   }
 }
 
+function findDonator() {
+  const findContact = $('#findDonator').val().trim();
+  const filteredRow = $('#donationList tbody tr').filter(function() {
+    const rowContent = $(this).text();
+    return rowContent.includes(findContact);
+  });
+
+  $('#donationList tbody tr').hide();
+  filteredRow.show();
+
+  const backRowButton = document.createElement('tr');
+  backRowButton.innerHTML = `
+    <th></th>
+    <th></th>
+    <th class="contactTd"><button type="button" id="backRowButtonDonator">Regresar</button></th>
+    <th></th>
+    <th></th>
+  `;
+  $("#donationList").append(backRowButton);
+
+  $("#backRowButtonDonator").click(() => {
+    $("#donationList tbody tr").show();
+    backRowButton.remove();
+    $('#findDonator').val("")
+  });
+  
+}
+
+function findContact() {
+  const findContact = $('#findContact').val().trim();
+  const filteredRow = $('#contactList tbody tr').filter(function() {
+    const rowContent = $(this).text();
+    return rowContent.includes(findContact);
+  });
+
+  $('#contactList tbody tr').hide();
+  filteredRow.show();
+
+  const backRowButton = document.createElement('tr');
+  backRowButton.innerHTML = `
+    <th></th>
+    <th></th>
+    <th class="contactTd"><button type="button" id="backRowButton">Regresar</button></th>
+    <th></th>
+    <th></th>
+  `;
+  $("#contactList").append(backRowButton);
+
+  $("#backRowButton").click(() => {
+    $("#contactList tbody tr").show();
+    backRowButton.remove();
+    $('#findContact').val("")
+  });
+}
+
+const getListContact = async () => {
+  
+  try {
+    const response = await fetch('./list_contact.json');
+
+    if (!response.ok) {
+      throw new Error('Error al realizar la petición');
+    }
+    const list_contact =  await response.json();
+
+    let number = 0;
+    for (const contact of list_contact) {
+      const contactRow = document.createElement('tr');
+      contactRow.innerHTML = `
+        <td class="contactTd">${number++}</td>
+        <td class="contactTd">${contact.nameContact}</td>
+        <td class="contactTd">${contact.emailContact}</td>
+        <td class="contactTd">${contact.message}</td>
+      `;
+      $("#contactList").append(contactRow);
+    }
+  } catch(err) {
+    console.log(err)
+  }
+};
+
 $(document).ready(function () {
   loadDonationsFromStorage();
+  getListContact();
 });
+
+
+
 
 
 

@@ -11,6 +11,8 @@
         <li><a href="./index.html">Inicio</a></li>
         <li><a href="./register_donator.html">Registro de Donadores</a></li>
         <li><a href="/list_donator.html">Listado de Donadores</a></li>
+        <li><a href="/find_contact.html">Buscar Contactos</a></li>
+        <li><a href="./info.html">Información</a></li>
         <li><a href="./contact.html">Contáctanos</a></li>
       </ul>
     </nav>
@@ -20,6 +22,11 @@
       <table id="donationList" class="contactTable">
         <tbody>
           <tr>
+            <th class="contactTd" colspan="3" style="padding-top: 10px"><input style="width : 90%;" placeholder="Ingrese datos a buscar" type="text" id="findDonator"/></th>
+            <th class="contactTd" colspan="1"><button type="button" id="findButtonDonator">Buscar</button></th>
+          </tr>
+          <tr>
+            <th class="contactTr">#</th>
             <th class="contactTr">Nombre</th>
             <th class="contactTr">Correo</th>
             <th class="contactTr">Celular</th>
@@ -30,6 +37,9 @@
       <br>
       <button type="button" id="clearButton">Borrar</button>
     </form>
+    <footer>
+      <a href="./info.html">Información</a> <label> | </label> <a href="./contact.html">Contáctanos</a>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
 </body>
